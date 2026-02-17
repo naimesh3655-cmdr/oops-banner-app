@@ -1,8 +1,1 @@
-\# OOPS Banner App
-
-
-
-This project prints the text "OOPS" in banner format using Java.
-
-
-
+oops banner app
