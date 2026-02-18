@@ -1,85 +1,34 @@
 /**
- * OOPSBannerApp UC3 - OOPS Banner Application (Use Case 3)
+ * OOPSBannerApp UC4 - Render OOPS as Banner using String Array and Loop
  *
- * This class extends the functionality of Use Case 2 by improving the way the "OOPS" banner
- * is constructed and displayed. It focuses on enhancing code readability and efficiency
- * by utilizing the String.join() method to create each line of the banner. This approach
- * overcomes the drawbacks of using the + operator for string concatenation, which can lead
- * to code inefficiency due to the creation of multiple intermediate String objects in memory.
+ * This use case improves upon UC3 by using a String array to store banner lines
+ * and iterating through them with a for-each loop, eliminating hardcoded print
+ * statements and improving modularity and reusability.
  *
- * @author Developer
- * @version 3.0
+ * @author Naimesh Padhi
+ * @version 4
  */
-
-// Extend use case UC2 to use String.join() method to create each line of the "OOPS" banner
-// instead of concatenating strings with the + operator. This is essentially to overcome the
-// drawbacks of using the + operator for string concatenation which essentially creates
-// multiple intermediate String objects in memory leading to inefficiency.
-
-// Hint: Use String.join(" ", ...) to join the parts of each line with spaces.
 
 public class OOPSBANNERAPP {
 
     // Main method to run the banner display
-    // Use System.out.println() to print each line of the OOPS banner to create
-    // the visual effect for the message "OOPS". Construct each line using
-    // String.join() method for better readability and efficiency.
-    // Each line corresponds to a row in the banner for the letters O, O, P, S.
-
     public static void main(String[] args) {
-     {
 
-        String line1 = String.join("  ",
-                " ***** ",
-                " ***** ",
-                " ***** ",
-                " ***** ");
+        // Define a String array with size equal to number of banner lines
+        String[] lines = new String[7];
 
-        String line2 = String.join("  ",
-                " *   * ",
-                " *   * ",
-                " *   * ",
-                " *     ");
+        // Populate banner lines using String.join()
+        lines[0] = String.join(" ", " ***** ", " ***** ", " ***** ", " ***** ");
+        lines[1] = String.join(" ", " *   * ", " *   * ", " *   * ", " *     ");
+        lines[2] = String.join(" ", " *   * ", " *   * ", " *   * ", " *     ");
+        lines[3] = String.join(" ", " ***** ", " ***** ", " ***** ", " ***** ");
+        lines[4] = String.join(" ", " *   * ", " *   * ", " *   * ", "     * ");
+        lines[5] = String.join(" ", " *   * ", " *   * ", " *   * ", "     * ");
+        lines[6] = String.join(" ", " ***** ", " ***** ", " ***** ", " ***** ");
 
-        String line3 = String.join("  ",
-                " *   * ",
-                " *   * ",
-                " *   * ",
-                " *     ");
-
-        String line4 = String.join("  ",
-                " ***** ",
-                " ***** ",
-                " ***** ",
-                " ***** ");
-
-        String line5 = String.join("  ",
-                " *   * ",
-                " *   * ",
-                " *   * ",
-                "     * ");
-
-        String line6 = String.join("  ",
-                " *   * ",
-                " *   * ",
-                " *   * ",
-                "     * ");
-
-        String line7 = String.join("  ",
-                " ***** ",
-                " ***** ",
-                " ***** ",
-                " ***** ");
-
-        System.out.println(line1);
-        System.out.println(line2);
-        System.out.println(line3);
-        System.out.println(line4);
-        System.out.println(line5);
-        System.out.println(line6);
-        System.out.println(line7);
+        // Use for-each loop to print each line
+        for (String line : lines) {
+            System.out.println(line);
+        }
     }
 }
-}
-
-
