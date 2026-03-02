@@ -1,72 +1,86 @@
-package com.oopsbanner;
+public class OOPSBANNERAPP{
 
-import java.util.HashMap;
-import java.util.Map;
+    // Class to store character and its pattern
+    static class CharacterPatternMap {
+        char character;
+        String[] pattern;
 
-public class OOPSBannerApp8 {
-
-    // Central Pattern Storage
-    static Map<Character, String[]> patternMap = new HashMap<>();
-
-    // Initialize patterns
-    static void initializePatterns() {
-
-        patternMap.put('O', new String[]{
-                " ***** ",
-                "**   **",
-                "**   **",
-                "**   **",
-                "**   **",
-                "**   **",
-                " ***** "
-        });
-
-        patternMap.put('P', new String[]{
-                "****** ",
-                "**   **",
-                "**   **",
-                "****** ",
-                "**     ",
-                "**     ",
-                "**     "
-        });
-
-        patternMap.put('S', new String[]{
-                " ***** ",
-                "**     ",
-                "**     ",
-                " ***** ",
-                "     **",
-                "     **",
-                " ***** "
-        });
+        CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
     }
 
-    // Render Function
-    static void renderBanner(String word) {
+    // Create pattern mappings
+    public static CharacterPatternMap[] createCharacterPatternMaps() {
 
-        StringBuilder[] banner = new StringBuilder[7];
+        String[] O = {
+"  *****   ",
+" **   **  ",
+" **   **  ",
+" **   **  ",
+" **   **  ",
+" **   **  ",
+"  *****   "
+        };
 
-        for (int i = 0; i < 7; i++)
-            banner[i] = new StringBuilder();
+        String[] P = {
+"  ******  ",
+" **    ** ",
+" **    ** ",
+" ******   ",
+" **       ",
+" **       ",
+" **       "
+        };
 
-        for (char ch : word.toCharArray()) {
+        String[] S = {
+"  ******  ",
+" **       ",
+" **       ",
+"  ******  ",
+"       ** ",
+" **    ** ",
+"  ******  "
+        };
 
-            String[] pattern = patternMap.get(ch);
+        return new CharacterPatternMap[] {
+                new CharacterPatternMap('O', O),
+                new CharacterPatternMap('P', P),
+                new CharacterPatternMap('S', S)
+        };
+    }
 
-            for (int i = 0; i < 7; i++) {
-                banner[i].append(pattern[i]).append(" ");
+    // Get pattern for character
+    public static String[] getCharacterPattern(char ch, CharacterPatternMap[] charMaps) {
+        for (CharacterPatternMap map : charMaps) {
+            if (map.character == ch) {
+                return map.pattern;
             }
         }
+        return null;
+    }
+// Print banner
+public static void printMessage(String message, CharacterPatternMap[] charMaps) {
 
-        for (StringBuilder line : banner) {
-            System.out.println(line.toString());
+    int height = charMaps[0].pattern.length;
+
+    for (int row = 0; row < height; row++) {
+        for (int i = 0; i < message.length(); i++) {
+            String[] pattern = getCharacterPattern(message.charAt(i), charMaps);
+            if (pattern != null) {
+                System.out.print(pattern[row] + "   ");
+            }
         }
+        System.out.println();
     }
+}
 
-    public static void main(String[] args) {
+// Main method
+public static void main(String[] args) {
 
-        initializePatterns();
-        renderBanner("OOPS");
-    }
+    CharacterPatternMap[] charMaps = createCharacterPatternMaps();
+    String message = "OOPS";
+    printMessage(message, charMaps);
+}
 }
