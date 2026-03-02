@@ -1,34 +1,89 @@
-/**
- * OOPSBannerApp UC4 - Render OOPS as Banner using String Array and Loop
- *
- * This use case improves upon UC3 by using a String array to store banner lines
- * and iterating through them with a for-each loop, eliminating hardcoded print
- * statements and improving modularity and reusability.
- *
- * @author Naimesh Padhi
- * @version 4
- */
 
-public class OOPSBANNERAPP {
+import java.util.HashMap;
+import java.util.Map;
 
-    // Main method to run the banner display
+public class OOPSBannerApp7 {
+
+    // CharacterPattern Class
+    static class CharacterPattern {
+        private char character;
+        private String[] pattern;
+
+        public CharacterPattern(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
+
+        public char getCharacter() {
+            return character;
+        }
+
+        public String[] getPattern() {
+            return pattern;
+        }
+    }
+
+    // CharacterPatternMap Class
+    static class CharacterPatternMap {
+
+        private static Map<Character, CharacterPattern> map = new HashMap<>();
+
+        static {
+            map.put('O', new CharacterPattern('O', new String[]{
+                    " ***** ",
+                    "**   **",
+                    "**   **",
+                    "**   **",
+                    "**   **",
+                    "**   **",
+                    " ***** "
+            }));
+
+            map.put('P', new CharacterPattern('P', new String[]{
+                    "****** ",
+                    "**   **",
+                    "**   **",
+                    "****** ",
+                    "**     ",
+                    "**     ",
+                    "**     "
+            }));
+
+            map.put('S', new CharacterPattern('S', new String[]{
+                    " ***** ",
+                    "**     ",
+                    "**     ",
+                    " ***** ",
+                    "     **",
+                    "     **",
+                    " ***** "
+            }));
+        }
+
+        public static CharacterPattern getPattern(char ch) {
+            return map.get(ch);
+        }
+    }
+
     public static void main(String[] args) {
 
-        // Define a String array with size equal to number of banner lines
-        String[] lines = new String[7];
+        String word = "OOPS";
+        StringBuilder[] banner = new StringBuilder[7];
 
-        // Populate banner lines using String.join()
-        lines[0] = String.join(" ", " ***** ", " ***** ", " ***** ", " ***** ");
-        lines[1] = String.join(" ", " *   * ", " *   * ", " *   * ", " *     ");
-        lines[2] = String.join(" ", " *   * ", " *   * ", " *   * ", " *     ");
-        lines[3] = String.join(" ", " ***** ", " ***** ", " ***** ", " ***** ");
-        lines[4] = String.join(" ", " *   * ", " *   * ", " *   * ", "     * ");
-        lines[5] = String.join(" ", " *   * ", " *   * ", " *   * ", "     * ");
-        lines[6] = String.join(" ", " ***** ", " ***** ", " ***** ", " ***** ");
+        for (int i = 0; i < 7; i++) {
+            banner[i] = new StringBuilder();
+        }
 
-        // Use for-each loop to print each line
-        for (String line : lines) {
-            System.out.println(line);
+        for (char ch : word.toCharArray()) {
+            String[] pattern = CharacterPatternMap.getPattern(ch).getPattern();
+
+            for (int i = 0; i < 7; i++) {
+                banner[i].append(pattern[i]).append(" ");
+            }
+        }
+
+        for (StringBuilder line : banner) {
+            System.out.println(line.toString());
         }
     }
 }
