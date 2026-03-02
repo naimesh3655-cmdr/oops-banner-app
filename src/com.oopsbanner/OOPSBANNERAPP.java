@@ -1,4 +1,5 @@
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,10 +13,6 @@ public class OOPSBannerApp7 {
         public CharacterPattern(char character, String[] pattern) {
             this.character = character;
             this.pattern = pattern;
-        }
-
-        public char getCharacter() {
-            return character;
         }
 
         public String[] getPattern() {
@@ -75,7 +72,9 @@ public class OOPSBannerApp7 {
         }
 
         for (char ch : word.toCharArray()) {
-            String[] pattern = CharacterPatternMap.getPattern(ch).getPattern();
+            String[] pattern = CharacterPatternMap
+                    .getPattern(ch)
+                    .getPattern();
 
             for (int i = 0; i < 7; i++) {
                 banner[i].append(pattern[i]).append(" ");
